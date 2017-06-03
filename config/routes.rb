@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
+
+  # namespace :api, :defaults => { :format => :json } do
+  #   namespace :v1 do
+  #     resources :trains, :only => [:index, :show]
+  #     resources :reservations, :ony => [:show, :create, :update, :destroy]
+  #   end
+  # end
   namespace :api, :defaults => { :format => :json } do
     namespace :v1 do
       get "/trains"  => "trains#index", :as => :trains
@@ -10,4 +17,6 @@ Rails.application.routes.draw do
       delete "/reservations/:booking_code" => "reservations#destroy", :as => :cancel_reservation
     end
   end
+
+  root "welcome#index"
 end
